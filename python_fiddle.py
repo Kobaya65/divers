@@ -79,7 +79,7 @@ def capital_words_spaces(input_string: str) -> str:
     import re
 
     pattern, res, pos = r"[A-Z]", "", 0
-    for maj in re.finditer(pattern=pattern, string=input_string, flags=re.U):
+    for maj in re.finditer(pattern=pattern, string=input_string):
         # not to process first character if it is uppercase
         if maj.start():
             res += f"{input_string[pos:maj.start()]} "
