@@ -12,5 +12,68 @@ def entiers_multiples() -> None:
 
     print(result)
 
+
+def number_to_lcd(number: int) -> str:
+    """Displays a number like on a lcd screen.
+    From https://codingdojo.org/kata/NumberToLCD.
+ _     _  _     _  _  _  _  _ 
+| |  | _| _||_||_ |_   ||_||_|
+|_|  ||_  _|  | _||_|  ||_| _|
+
+    Args:
+        number (int): number to be displayed
+
+    Returns:
+        str: string
+    """
+    chiffres = {
+        0: {
+            0: " _ ",
+            1: "   ",
+            2: " _ ",
+            3: " _ ",
+            4: "   ",
+            5: " _ ",
+            6: " _ ",
+            7: " _ ",
+            8: " _ ",
+            9: " _ ",
+        },
+        1: {
+            0: "| |",
+            1: "  |",
+            2: " _|",
+            3: " _|",
+            4: "|_|",
+            5: "|_ ",
+            6: "|_ ",
+            7: "  |",
+            8: "|_|",
+            9: "|_|",
+        },
+        2: {
+            0: "|_|",
+            1: "  |",
+            2: "|_ ",
+            3: " _|",
+            4: "  |",
+            5: " _|",
+            6: "|_|",
+            7: "  |",
+            8: "|_|",
+            9: " _|",
+        },
+    }    
+
+    result = ""
+    number_str = str(number)
+    for niv in range(3):
+        for x in number_str:
+            result += chiffres[niv][int(x)]
+        result += "\n"
+
+    return result
+
+
 if __name__ == "__main__":
-    entiers_multiples()
+    print(number_to_lcd(8712349657))
