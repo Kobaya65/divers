@@ -47,6 +47,26 @@ def diamond(letter: str) -> str:
 
     return solution
 
+def dictionary_replacer(input: str, dico: dict) -> str:
+    """Change words surrounded by $ in "input", with the corresponding value from the dictionary.
+    https://codingdojo.org/kata/DictionaryReplacer/
+
+    Args:
+        input (str): the string where to replace values
+        dico (dict): dictionary containing terms to be replaced and their corresponding value
+    Returns:
+        str: changed string
+    """
+    import re
+
+    res = input
+    for m in re.finditer(r"\$([^$]*)\$", input):
+        mot = m.group(0)
+        res = res.replace(mot, dico.get(mot[1:-1]))
+
+    return res
+
 
 if __name__ == "__main__":
-    print(diamond("k"))
+    # print(diamond("k"))
+    print(dictionary_replacer("$temp$ here comes the name $name$", {"temp": "temporary", "name": "John Doe"}))
