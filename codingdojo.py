@@ -67,7 +67,146 @@ def dictionary_replacer(input: str, dico: dict) -> str:
 
     return res
 
+class Greed():
+    """Greed is a dice game.
+    https://codingdojo.org/kata/Greed/
+    """
+    __bonus_triple = {
+        1: 1000,
+        2: 200,
+        3: 300,
+        4: 400,
+        5: 500,
+        6: 600,
+    }
+    __total_bonus = {"Throw": [], "Scores": {}}
+
+    def check_pairs(self, die_values: list[int]) -> None:
+        """Check if there are three pairs in die_values.
+
+        Args:
+            die_values (list[int]): list of dice values
+        """
+        figures = {}
+        for x in die_values:
+            figures[x] = figures.get(x, 0) + 1
+
+        if len(figures) == 3:
+            three_pairs = True
+            for x in figures:
+                if figures[x] != 2:
+                    three_pairs = False
+                    break
+            if three_pairs:
+                self.__total_bonus["Scores"]["Three Pairs"] = 800
+
+    def of_a_kind(self, die_values: list[int]) -> None:
+        """Calculates extra bonus for 3/4/5/6 of a kind.
+        - four-of-a-kind (Multiply Triple Score by 2)
+        - five-of-a-kind (Multiply Triple Score by 4)
+        - six-of-a-kind (Multiply Triple Score by 8)
+
+        Args:
+            die_values (list[int]): list of dice values
+        """
+        for face_value in range(1, 7):
+            if die_values.count(face_value) == 3:
+                self.__total_bonus["Scores"][f"Triple {face_value}"] = self.__bonus_triple[face_value]
+            if die_values.count(face_value) == 4:
+                self.__total_bonus["Scores"][f"4 of a kind {face_value}"] = self.__bonus_triple[face_value] * 2
+            if die_values.count(face_value) == 5:
+                self.__total_bonus["Scores"][f"5 of a kind {face_value}"] = self.__bonus_triple[face_value] * 4
+            if die_values.count(face_value) == 6:
+                self.__total_bonus["Scores"][f"6 of a kind {face_value}"] = self.__bonus_triple[face_value] * 8
+
+    def score(self, die_values: list[int]) -> dict:
+        """Returns throw of die score.
+
+        Args:
+            die_values (list[int]): list of dice values
+        Returns:
+            dict: score or error as a dictionary
+        """
+        self.__total_bonus["Throw"] = die_values
+        self.__total_bonus["Scores"] = {}
+
+        if len(die_values) > 6:
+            self.__total_bonus.pop("Scores")
+            self.__total_bonus["Error"] = "/!\\ Maximum 6 values! /!\\"
+            return self.__total_bonus
+
+        # straight
+        comp = die_values.copy()
+        comp.sort()
+        if comp == [1, 2, 3, 4, 5, 6]:
+            self.__total_bonus["Scores"]["Straight"] = 1200
+
+        # single one
+        if die_values.count(1) == 1:
+            self.__total_bonus["Scores"]["Single One"] = 100
+
+        # single five
+        if die_values.count(5) == 1:
+            self.__total_bonus["Scores"]["Single Five"] = 50
+
+        # triples and more
+        self.of_a_kind(die_values)
+
+        # 3 pairs
+        self.check_pairs(die_values)
+        
+        return self.__total_bonus
+
 
 if __name__ == "__main__":
-    # print(diamond("k"))
-    print(dictionary_replacer("$temp$ here comes the name $name$", {"temp": "temporary", "name": "John Doe"}))
+    greed = Greed() 
+
+    d1 = greed.score([6, 2, 1, 5, 4, 3])
+    print(f"straight        {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([1, 1, 1, 5, 4, 3])
+    print(f"triple          {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([2, 2, 2, 5, 4, 3])
+    print(f"triple          {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([3, 3, 3, 5, 4, 2])
+    print(f"triple          {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([4, 4, 4, 5, 6, 3])
+    print(f"triple          {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([5, 5, 5, 6, 4, 3])
+    print(f"triple          {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([6, 6, 6, 5, 4, 3])
+    print(f"triple          {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([6, 2, 3, 3, 3, 3])
+    print(f"4 of a kind     {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([4, 4, 1, 4, 4, 4])
+    print(f"5 of a kind     {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([4, 4, 2, 4, 4, 4])
+    print(f"5 of a kind     {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([2, 2, 2, 2, 2, 2])
+    print(f"6 of a kind     {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([5, 5, 5, 5, 5, 5])
+    print(f"6 of a kind     {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([6, 6, 1, 1, 4, 4])
+    print(f"3 pairs         {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([6, 6, 1, 2, 4, 4])
+    print(f"3 pairs         {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([1, 5])
+    print(f"1 and 5         {sum(d1["Scores"].values()):>6}\n{d1}")
+
+    d1 = greed.score([6, 2, 1, 5, 4, 3, 6])
+    print(f"more than 6 die\n{d1}")
+
+    del greed
