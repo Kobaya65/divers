@@ -62,7 +62,8 @@ def dictionary_replacer(input: str, dico: dict) -> str:
     res = input
     for m in re.finditer(r"\$([^$]*)\$", input):
         mot = m.group(0)
-        res = res.replace(mot, dico.get(mot[1:-1]))
+        repl = dico.get(mot[1:-1], "")
+        res = res.replace(mot, repl)
 
     return res
 
