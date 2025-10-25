@@ -154,11 +154,11 @@ class Greed():
 
         # 3 pairs
         self.check_pairs(die_values)
-        
+
         return self.__total_bonus
 
-
-if __name__ == "__main__":
+def test_class_greed() -> None:
+    """The only purpose of this function is to test the Greed() class."""    
     greed = Greed() 
 
     d1 = greed.score([6, 2, 1, 5, 4, 3])
@@ -210,3 +210,7 @@ if __name__ == "__main__":
     print(f"more than 6 die\n{d1}")
 
     del greed
+
+
+if __name__ == "__main__":
+    test_class_greed()
