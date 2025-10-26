@@ -79,6 +79,7 @@ class Greed():
         5: 500,
         6: 600,
     }
+    # __total_bonus aims at keeping trace of all bonuses in the total score
     __total_bonus = {"Throw": [], "Scores": {}}
 
     def check_pairs(self, die_values: list[int]) -> None:
