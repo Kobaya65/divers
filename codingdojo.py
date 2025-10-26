@@ -212,6 +212,34 @@ def test_class_greed() -> None:
 
     del greed
 
+def leap_year(year: int) -> bool:
+    """Checks if a given year is leap or not.
+    https://codingdojo.org/kata/LeapYears/
+    - all years divisible by 400 ARE leap years (so, for example, 2000 was indeed a leap year),
+    - all years divisible by 100 but not by 400 are NOT leap years
+        (so, for example, 1700, 1800, and 1900 were NOT leap years, NOR will 2100 be a leap year),
+    - all years divisible by 4 but not by 100 ARE leap years (e.g., 2008, 2012, 2016),
+    - all years not divisible by 4 are NOT leap years (e.g. 2017, 2018, 2019),
+    - years divisible by 4000 are NOT leap years.
+
+    Args:
+        year (int): year
+
+    Returns:
+        bool: Return True if year is a leap year else False
+    """
+    if not isinstance(year, int):
+        raise TypeError("year MUST be a whole number.")
+
+    res = False
+    if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0) and (year % 4000 != 0):
+        res = True
+
+    return res
+
 
 if __name__ == "__main__":
-    test_class_greed()
+    print(4004, leap_year(4004))
+    print(4000, leap_year(4000))
+    
+    
