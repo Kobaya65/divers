@@ -13,15 +13,13 @@ def main() -> None:
     print(fibonacci)
 
 def add(*args) -> float | int:
-    """
+    """Adds an arbitrary number of arguments together and returns the sum.
     https://python-fiddle.com/challenges/add-args
-    Adds an arbitrary number of arguments together and returns the sum.
 
     Args:
-        *args: The input arguments.
-
+        *args: The input arguments
     Returns:
-        int or float: The sum of all the arguments.
+        int or float: The sum of all the arguments
     """
     somme = 0
     for arg in args:
@@ -30,16 +28,14 @@ def add(*args) -> float | int:
     return somme
 
 def find_substring(strings: list[str], substring: str) -> bool:
-    """
+    """Check if a substring is present in any string within a list.
     https://python-fiddle.com/challenges/check-substring-in-list
-    Check if a substring is present in any string within a list.
 
     Args:
-        strings (list of str): The list of strings to search within.
-        substring (str): The substring to search for.
-
+        strings (list of str): The list of strings to search within
+        substring (str): The substring to search for
     Returns:
-        bool: True if the substring is found in any string, False otherwise.
+        bool: True if the substring is found in any string, False otherwise
     """
     result = False
     for mot in strings:
@@ -50,31 +46,27 @@ def find_substring(strings: list[str], substring: str) -> bool:
     return result
 
 def ascii_value(char: str) -> int:
-    """
+    """Returns the ASCII value of the given character.
     https://python-fiddle.com/challenges/ascii-value-of-character
-    Returns the ASCII value of the given character.
 
     Args:
-        char (str): A single character.
-
+        char (str): A single character
     Returns:
-        int: The ASCII value of the character.
+        int: The ASCII value of the character
     """
     res = ord(char)
 
     return res
 
 def capital_words_spaces(input_string: str) -> str:
-    """
-    https://python-fiddle.com/challenges/add-spaces-between-capital-words
-    Insert spaces between words starting with capital letters in the given string.
+    """Insert spaces between words starting with capital letters in the given string.
     Use a regular expression to identify the pattern and insert spaces.
+    https://python-fiddle.com/challenges/add-spaces-between-capital-words
 
     Args:
-        input_string (str): The input string containing words without spaces.
-
+        input_string (str): The input string containing words without spaces
     Returns:
-        str: A new string with spaces inserted between capitalized words.
+        str: A new string with spaces inserted between capitalized words
     """
     import re
 
