@@ -10,11 +10,11 @@ def diamond(letter: str) -> str:
         str: the diamond as a string
     """
     def make_row(rang: int, ligne: int) -> str:
-        """Build a row.
+        """Build a row where the letter to display will be deduced from ligne.
 
         Args:
             rang (int): rank of the letter in the alphabet
-            ligne (int): index of the row
+            ligne (int): index of the row and the letter to display
         Returns:
             str: the row with the given letter, which is deduced from the line number
         """
@@ -227,7 +227,6 @@ def leap_year(year: int) -> bool:
 
     Args:
         year (int): year
-
     Returns:
         bool: Return True if year is a leap year else False
     """
