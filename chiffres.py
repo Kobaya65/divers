@@ -16,9 +16,9 @@ def entiers_multiples() -> None:
 def number_to_lcd(number: int) -> str:
     """Displays a number like on a lcd screen.
     From https://codingdojo.org/kata/NumberToLCD.
- _     _  _     _  _  _  _  _ 
-| |  | _| _||_||_ |_   ||_||_|
-|_|  ||_  _|  | _||_|  ||_| _|
+     _     _  _     _  _  _  _  _ 
+    | |  | _| _||_||_ |_   ||_||_|
+    |_|  ||_  _|  | _||_|  ||_| _|
 
     Args:
         number (int): number to be displayed
@@ -26,6 +26,7 @@ def number_to_lcd(number: int) -> str:
     Returns:
         str: string
     """
+    # each key of the dictionary corresponds to a line of the lcd display
     chiffres = {
         0: {
             0: " _ ",
@@ -76,4 +77,4 @@ def number_to_lcd(number: int) -> str:
 
 
 if __name__ == "__main__":
-    print(number_to_lcd(8712349657))
+    print(number_to_lcd(1234567890))
