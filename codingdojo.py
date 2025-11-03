@@ -28,6 +28,9 @@ def diamond(letter: str) -> str:
         """
         return f"{" " * rang}A\n"
 
+    if not letter.isalpha() or len(letter) != 1:
+        raise ValueError("Input MUST be a single letter from A to Z.")
+
     letter = letter.upper()
     if letter == "A":
         return "A"
@@ -239,7 +242,4 @@ def leap_year(year: int) -> bool:
 
 
 if __name__ == "__main__":
-    print(4004, leap_year(4004))
-    print(4000, leap_year(4000))
-    
-    
+    print(diamond("mm"))
