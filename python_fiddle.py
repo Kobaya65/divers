@@ -18,10 +18,10 @@ def add(*args) -> float | int:
     Adds an arbitrary number of arguments together and returns the sum.
 
     Args:
-    *args: The input arguments.
+        *args: The input arguments.
 
     Returns:
-    int or float: The sum of all the arguments.
+        int or float: The sum of all the arguments.
     """
     somme = 0
     for arg in args:
@@ -55,10 +55,10 @@ def ascii_value(char: str) -> int:
     Returns the ASCII value of the given character.
 
     Args:
-    char (str): A single character.
+        char (str): A single character.
 
     Returns:
-    int: The ASCII value of the character.
+        int: The ASCII value of the character.
     """
     res = ord(char)
 
