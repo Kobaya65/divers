@@ -74,14 +74,44 @@ def outer_function(a: int, b: int) -> int:
     return inner_function(a, b) + 5
 
 def sum_of_numbers(number: int) -> int:
-    """https://pynative.com/python-recursion-exercise-with-solutions/#h-exercise-1-write-a-recursive-function-to-calculate-the-sum-of-numbers-from-0-to-10
-    exercise 1
+    """https://pynative.com/python-functions-exercise-with-solutions/#h-exercise-13-write-a-recursive-function-to-calculate-the-factorial
+    exercise 6
     """
     if number <= 1:
         return number
     else:
         return number + sum_of_numbers(number - 1)
 
+def create_a_lambda_function_that_squares_a_given_number() -> None:
+    """https://pynative.com/python-functions-exercise-with-solutions/#h-exercise-1-create-a-function-in-python
+    exercise 14
+    """
+    square = lambda x: x * x
+    print(square(5))
+
+def python_dictionary_exercise_with_solutions() -> None:
+    """https://pynative.com/python-dictionary-exercise-with-solutions/
+    """
+    # exercises 1 & 2
+    my_dict = {'name': 'Alice', 'age': 35, 'city': 'New York'}
+    print(my_dict)
+    my_dict["profession"] = "Doctor"
+    print(my_dict)
+    my_dict["age"] = 40
+    print(my_dict)
+    print(my_dict["city"])
+
+    print("without profession")
+    my_dict.popitem()
+    print(my_dict)
+
+    print("Printing all key-value pairs:")
+    for x in my_dict:
+        print(f"{x}: {my_dict[x]}")
+    
+    print(f"Does 'age' exist: {my_dict["age"] is not None}")
+    print(f"Does 'age' exist: {"age" in my_dict}")
+
 
 if __name__ == "__main__":
-    print(sum_of_numbers(57))
+    python_dictionary_exercise_with_solutions()
