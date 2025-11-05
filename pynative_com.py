@@ -112,6 +112,13 @@ def python_dictionary_exercise_with_solutions() -> None:
     print(f"Does 'age' exist: {my_dict["age"] is not None}")
     print(f"Does 'age' exist: {"age" in my_dict}")
 
+    # exercise 3
+    keys = ['Ten', 'Twenty', 'Thirty']
+    values = [10, 20, 30]
+    new_dict = dict(zip(keys, values))
+    print(new_dict)
+    
+
 
 if __name__ == "__main__":
     python_dictionary_exercise_with_solutions()
