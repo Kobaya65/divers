@@ -1,2 +1,2 @@
-# divers
-exercices divers
+# Miscellaneous
+Miscellaneous Python Exercices
