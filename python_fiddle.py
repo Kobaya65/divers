@@ -82,6 +82,43 @@ def capital_words_spaces(input_string: str) -> str:
 
     return res
 
+def extract_column_from_csv(file_path: str, column_index: int) -> list[str]:
+    """https://python-fiddle.com/challenges/csv-dict
+
+    Args:
+        file_path (str): The path to the CSV file
+        column_index (int): The index of the column to extract (0-based)
+    Returns:
+        list of str: A list containing the values from the specified column
+    """
+    import csv
+    import pandas as pd
+
+    column_data = []
+    with open(file_path, mode='r', newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            if len(row) > column_index:
+                column_data.append(row[column_index])
+
+    return column_data
+
+def create_csv_file() -> None:
+    """Create a csv file to be used in extract_column_from_csv().
+    """
+    import os.path
+    import csv
+
+    file_path = f"{os.path.expanduser("~")}/Documents/data.csv"
+    with open(file_path, "w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=["Name", "Age", "City"])
+        writer.writeheader()
+        writer.writerow({"Name": "John", "Age": "25", "City": "New York"})
+        writer.writerow({"Name": "Emma", "Age": "30", "City": "London"})
+
+    del os.path
+    del csv
+
 
 if __name__ == "__main__":
-    print(capital_words_spaces("PythonProgrammingExamples"))
+    create_csv_file()
