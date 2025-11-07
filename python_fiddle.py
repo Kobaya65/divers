@@ -82,27 +82,6 @@ def capital_words_spaces(input_string: str) -> str:
 
     return res
 
-def extract_column_from_csv(file_path: str, column_index: int) -> list[str]:
-    """https://python-fiddle.com/challenges/csv-dict
-
-    Args:
-        file_path (str): The path to the CSV file
-        column_index (int): The index of the column to extract (0-based)
-    Returns:
-        list of str: A list containing the values from the specified column
-    """
-    import csv
-    import pandas as pd
-
-    column_data = []
-    with open(file_path, mode='r', newline='') as csvfile:
-        reader = csv.reader(csvfile)
-        for row in reader:
-            if len(row) > column_index:
-                column_data.append(row[column_index])
-
-    return column_data
-
 def create_csv_file() -> None:
     """Create a csv file to be used in extract_column_from_csv().
     """
@@ -119,6 +98,46 @@ def create_csv_file() -> None:
     del os.path
     del csv
 
+def extract_column_from_csv(file_path: str, column_names: list[str]) -> list[dict]:
+    """https://python-fiddle.com/challenges/csv-dict
+
+    Args:
+        file_path (str): The path to the CSV file
+        column_index (int): The index of the column to extract (0-based)
+    Returns:
+        list of str: A list containing the values from the specified column
+    """
+    import pandas as pd
+
+    column_data = []
+    df = pd.read_csv(file_path)
+    df = df[column_names]
+
+    for _, row in df.iterrows():
+        entry = {col: row[col] for col in column_names}
+        column_data.append(entry)
+    
+    return column_data
+
+def map_folium() -> None:
+    """https://python-fiddle.com/tutorials/folium"""
+    import folium
+
+    # Create a map centered at a given location
+    m = folium.Map(location=[46.5887136, 0.3567401], zoom_start=20)
+
+    folium.Marker(
+        location=[46.58849, 0.358050],
+        tooltip="Chambre Titouan",
+        popup="Philippe AMICE<br />9 rue de provence<br />86000 Poitiers<br />",
+        icon=folium.Icon(icon="home"),
+    ).add_to(m)
+
+    # Display the map
+    m.save("map_Poitiers_Couronneries.html")
+    m.show_in_browser()
+
 
 if __name__ == "__main__":
-    create_csv_file()
+    map_folium()
+    
