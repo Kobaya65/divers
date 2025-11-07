@@ -163,5 +163,26 @@ def get_adjacent_coordinates(coord: tuple[int, int]) -> list[tuple[int, int]]:
 
     return sorted(adjacent_coords)
 
+def check_consecutive(lst: list) -> bool:
+    """Check if the given list contains consecutive numbers.
+
+    Args:
+        lst (list): A list of integers.
+    Returns:
+        bool: True if the list contains consecutive numbers, False otherwise.
+    """
+    consecutive = True
+    lst.sort()
+    for figure in range(1, len(lst)):
+        if lst[figure] != lst[figure - 1] + 1:
+            consecutive = False
+            break
+
+    return consecutive
+
+
 if __name__ == "__main__":
-    print(get_adjacent_coordinates((0, 0)))
+    print(check_consecutive([1, 2, 3, 4, 5]))  # Output: True
+    print(check_consecutive([1, 2, 4, 5]))     # Output: False
+    print(check_consecutive([3, 2, 1]))        # Output: True
+    print(check_consecutive([1, 1, 2]))        # Output: False
