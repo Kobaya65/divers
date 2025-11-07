@@ -137,7 +137,31 @@ def map_folium() -> None:
     m.save("map_Poitiers_Couronneries.html")
     m.show_in_browser()
 
+def get_adjacent_coordinates(coord: tuple[int, int]) -> list[tuple[int, int]]:
+    """Get all adjacent coordinates of a given coordinate.
+    https://python-fiddle.com/challenges/adjacent-coordinates-extraction
+
+    Args:
+        coord (tuple of int): The input coordinate as (x, y)
+    Returns:
+        list of tuple of int: A list of adjacent coordinates
+    """
+    if len(coord) != 2:
+        raise ValueError("Input coordinate must be a tuple of two integers.")
+
+    x, y = coord
+    adjacent_coords = [
+        (x, y - 1),     # Up
+        (x, y + 1),     # Down
+        (x - 1, y),     # Left
+        (x + 1, y),     # Right
+        (x - 1, y - 1), # Top-left
+        (x + 1, y - 1), # Top-right
+        (x - 1, y + 1), # Bottom-left
+        (x + 1, y + 1), # Bottom-right
+    ]
+
+    return sorted(adjacent_coords)
 
 if __name__ == "__main__":
-    map_folium()
-    
+    print(get_adjacent_coordinates((0, 0)))
