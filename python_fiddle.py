@@ -165,6 +165,7 @@ def get_adjacent_coordinates(coord: tuple[int, int]) -> list[tuple[int, int]]:
 
 def check_consecutive(lst: list) -> bool:
     """Check if the given list contains consecutive numbers.
+    https://python-fiddle.com/challenges/check-consecutive-numbers
 
     Args:
         lst (list): A list of integers.
@@ -180,9 +181,29 @@ def check_consecutive(lst: list) -> bool:
 
     return consecutive
 
+def check_integer(text: str) -> bool:
+    """Check if the given string represents a valid integer.
+    https://python-fiddle.com/challenges/check-if-string-is-integer
+
+    Args:
+        text (str): The input string to check.
+    Returns:
+        bool: True if the string is a valid integer, False otherwise.
+    """
+    # Strip any leading or trailing whitespace
+    text = text.strip()
+    try:
+        _ = int(text)
+        res = True
+    except Exception:
+        res = False
+
+    return res 
 
 if __name__ == "__main__":
-    print(check_consecutive([1, 2, 3, 4, 5]))  # Output: True
-    print(check_consecutive([1, 2, 4, 5]))     # Output: False
-    print(check_consecutive([3, 2, 1]))        # Output: True
-    print(check_consecutive([1, 1, 2]))        # Output: False
+    print(check_integer("123"))  # True
+    print(check_integer("-456"))  # True
+    print(check_integer("+789"))  # True
+    print(check_integer("12.3"))  # False
+    print(check_integer("abc"))  # False
+    print(check_integer(""))  # False
