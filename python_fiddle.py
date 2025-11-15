@@ -200,10 +200,29 @@ def check_integer(text: str) -> bool:
 
     return res 
 
+def opposite_signs(x: int, y: int) -> bool:
+    """Check if two integers have opposite signs.
+    https://python-fiddle.com/challenges/check-opposite-signs
+
+    Args:
+        x (int): The first integer.
+        y (int): The second integer.
+    Returns:
+        bool: True if x and y have opposite signs, False otherwise or if at least one integer is zero.
+    """
+    if (x == 0 or y == 0):
+        res = False
+    else:
+        res = (x > 0 and y < 0) or (x < 0 and y > 0)
+
+    return res
+
+
 if __name__ == "__main__":
-    print(check_integer("123"))  # True
-    print(check_integer("-456"))  # True
-    print(check_integer("+789"))  # True
-    print(check_integer("12.3"))  # False
-    print(check_integer("abc"))  # False
-    print(check_integer(""))  # False
+    print(opposite_signs(1, -2))
+    print(opposite_signs(3, 2))
+    print(opposite_signs(-10, -10))
+    print(opposite_signs(-2, 2))
+    print(opposite_signs(0, 5))
+    print(opposite_signs(0, -5))
+    
