@@ -217,12 +217,22 @@ def opposite_signs(x: int, y: int) -> bool:
 
     return res
 
+def is_perfect_square(n: int) -> bool:
+    """Determine if the given number is a perfect square.
+
+    Args:
+        n (int): The number to check.
+    Returns:
+        bool: True if n is a perfect square, False otherwise.
+    """
+    from math import sqrt
+
+    if sqrt(n).is_integer():
+        return True
+    return False
 
 if __name__ == "__main__":
-    print(opposite_signs(1, -2))
-    print(opposite_signs(3, 2))
-    print(opposite_signs(-10, -10))
-    print(opposite_signs(-2, 2))
-    print(opposite_signs(0, 5))
-    print(opposite_signs(0, -5))
-    
+    print(is_perfect_square(16))  # Output: True
+    print(is_perfect_square(14))  # Output: False
+    print(is_perfect_square(1))   # Output: True
+    print(is_perfect_square(0))   # Output: True
