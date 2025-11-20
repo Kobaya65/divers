@@ -231,8 +231,30 @@ def is_perfect_square(n: int) -> bool:
         return True
     return False
 
+def convert_list_dictionary(l1: list, l2: list, l3: list) -> list[dict]:
+    """
+    Convert three lists into a list of nested dictionaries.
+    https://python-fiddle.com/challenges/convert-lists-to-nested-dictionary
+
+    Args:
+        l1 (list): List of keys for the outer dictionary.
+        l2 (list): List of keys for the inner dictionary.
+        l3 (list): List of values for the inner dictionary.
+
+    Returns:
+        list: A list of nested dictionaries.
+    """
+    res = []
+    for i in range(len(l1)):
+        res.append({l1[i]: {l2[i]: l3[i]}})
+    return res
+
+
 if __name__ == "__main__":
-    print(is_perfect_square(16))  # Output: True
-    print(is_perfect_square(14))  # Output: False
-    print(is_perfect_square(1))   # Output: True
-    print(is_perfect_square(0))   # Output: True
+    l1 = ["S001", "S002", "S003", "S004"]
+    l2 = ["Adina Park", "Leyton Marsh", "Duncan Boyle", "Saim Richards"]
+    l3 = [85, 98, 89, 92]
+
+    result = convert_list_dictionary(l1, l2, l3)
+    print(result)
+    # Output: [{'S001': {'Adina Park': 85}}, {'S002': {'Leyton Marsh': 98}}, {'S003': {'Duncan Boyle': 89}}, {'S004': {'Saim Richards': 92}}]
