@@ -232,8 +232,7 @@ def is_perfect_square(n: int) -> bool:
     return False
 
 def convert_list_dictionary(l1: list, l2: list, l3: list) -> list[dict]:
-    """
-    Convert three lists into a list of nested dictionaries.
+    """Convert three lists into a list of nested dictionaries.
     https://python-fiddle.com/challenges/convert-lists-to-nested-dictionary
 
     Args:
@@ -249,12 +248,18 @@ def convert_list_dictionary(l1: list, l2: list, l3: list) -> list[dict]:
         res.append({l1[i]: {l2[i]: l3[i]}})
     return res
 
+def check_char(string: str) -> str:
+    """Check if the given string starts and ends with the same character.
+
+    Args:
+        string (str): The input string to check.
+    Returns:
+        str: "Valid" if the string starts and ends with the same character, "Invalid" otherwise.
+    """
+    return ("Valid" if (string[0] == string[-1]) else "Invalid")
+
 
 if __name__ == "__main__":
-    l1 = ["S001", "S002", "S003", "S004"]
-    l2 = ["Adina Park", "Leyton Marsh", "Duncan Boyle", "Saim Richards"]
-    l3 = [85, 98, 89, 92]
-
-    result = convert_list_dictionary(l1, l2, l3)
-    print(result)
-    # Output: [{'S001': {'Adina Park': 85}}, {'S002': {'Leyton Marsh': 98}}, {'S003': {'Duncan Boyle': 89}}, {'S004': {'Saim Richards': 92}}]
+    print(check_char("abba"))  # Output: "Valid"
+    print(check_char("a"))     # Output: "Valid"
+    print(check_char("abcd"))  # Output: "Invalid"
